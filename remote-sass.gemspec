@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Remote::Sass::VERSION
   gem.authors       = ["Joe Ellis"]
   gem.email         = ["joe@joeellis.la"]
-  gem.description   =  "Import remote urls with Sass."
-  gem.summary       = "Allows the ability to fetch remote SASS/SCSS stylesheets over http"
+  gem.description   = "Import remote stylesheets with Sass."
+  gem.summary       = "Allows the ability to fetch remote SASS/SCSS stylesheets over http(s)"
   gem.homepage      = "https://github.com/joeellis/remote-sass"
 
   gem.files         = `git ls-files`.split "\n"
