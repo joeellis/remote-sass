@@ -13,6 +13,12 @@ describe "Sass Importer" do
     @importer = Sass::Importers::HTTP.new "http://example.com"
   end
 
+  it "can return a unique key for Sass caching purposes" do
+    # http://sass-lang.com/docs/yardoc/Sass/Importers/Base.html#key-instance_method
+
+    @importer.key("http://example.com", {}).should == ["Sass::Importers::HTTP", "http://example.com"]
+  end
+
   it "can make a remote connection for absolute urls" do
     uri = URI.parse "http://example.com/style.scss"
     http = mock :http
