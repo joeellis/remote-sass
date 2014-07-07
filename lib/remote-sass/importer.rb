@@ -88,14 +88,18 @@ module Sass
         syntax = get_syntax uri
 
         # fetch the content
-        Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-          response = http.get uri.request_uri
-          response.value
+        if exists? uri
+          Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+            response = http.get uri.request_uri
+            response.value
 
-          options[:importer] = self
-          options[:filename] = uri.to_s
-          options[:syntax] = syntax
-          Sass::Engine.new response.body, options
+            options[:importer] = self
+            options[:filename] = uri.to_s
+            options[:syntax] = syntax
+            Sass::Engine.new response.body, options
+          end
+        else
+          nil
         end
       # rescue
       #   nil
